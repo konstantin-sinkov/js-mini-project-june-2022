@@ -1,6 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto', 'Droid Sans', sans-serif;
+    color: #262626;
+}
 
+body {
+    background-color: azure;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*  users_page  */
+.users_wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 
 .user_item {
+    margin: 0 10px;
     padding: 5px 7px;
     background-color: lightcyan;
+    border: 1px solid #444444;
+    transition: background-color 700ms, transform 2s;
 }
+
+.user_item:hover {
+    background-color: #FFCCCC;
+}
+
+
+/*  //users_page  */
