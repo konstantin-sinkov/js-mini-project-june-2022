@@ -1,6 +1,7 @@
 let url = new URL(location.href);
 let id = url.searchParams.get('id');
 
+let userDiv = document.querySelector('.user_wrapper');
 let userDetailsDiv = document.querySelector('.user_details_wrap');
 let userPostsDiv = document.querySelector('.user_posts_wrap');
 
@@ -9,24 +10,25 @@ let userPostsBtn = document.createElement('button');
 fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
     .then(response => response.json())
     .then(user => {
-        for (const key in user) {
-            if (typeof user[key] !== 'object') {
-                let userInfoItem = document.createElement('div');
-                userInfoItem.innerHTML = `<p><b>${key}</b> - ${user[key]}</p>`;
-                userDetailsDiv.appendChild(userInfoItem);
-            } else {
-                let userInfoItemBlock = document.createElement('div');
-                userInfoItemBlock.innerHTML = `<h4><u>${key}:</u></h4>`
-                for (const key2 in user[key]) {
-                    userInfoItemBlock.innerHTML += `<p>${user[key]}--${user[key][key2]}</p>`
-                }
-                userDetailsDiv.appendChild(userInfoItemBlock);
-            }
-        }
+        // for (const key in user) {
+        //     if (typeof user[key] !== 'object') {
+        //         let userInfoItem = document.createElement('div');
+        //         userInfoItem.innerHTML = `<p><b>${key}</b> - ${user[key]}</p>`;
+        //         userDetailsDiv.appendChild(userInfoItem);
+        //     } else {
+        //         let userInfoItemBlock = document.createElement('div');
+        //         userInfoItemBlock.innerHTML = `<h4><u>${key}:</u></h4>`
+        //         for (const key2 in user[key]) {
+        //             userInfoItemBlock.innerHTML += `<p>${user[key]}--${user[key][key2]}</p>`
+        //         }
+        //         userDetailsDiv.appendChild(userInfoItemBlock);
+        //     }
+        // }
         
         //with recursion
         function objRecur(user) {
             for (const key in user) {
+                // debugger;
                 if (typeof user[key] !== 'object') {
                     let userInfoItem = document.createElement('div');
                     userInfoItem.innerHTML = `<p><b>${key}</b> - ${user[key]}</p>`;
@@ -35,7 +37,7 @@ fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
                     let userInfoItemBlock = document.createElement('div');
                     userInfoItemBlock.innerHTML = `<h4><u>${key}:</u></h4>`
                     for (const key2 in user[key]) {
-                        objRecur(user[key]);
+                        objRecur(user[key][key2]);
                     }
                     userDetailsDiv.appendChild(userInfoItemBlock);
                 }
@@ -103,8 +105,8 @@ fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`)
         }
     })
 
-userPostsBtn.innerText = 'UserPosts';
-userDetailsDiv.appendChild(userPostsBtn);
+userPostsBtn.innerText = 'Posts of current user';
+userDiv.appendChild(userPostsBtn);
 
 userPostsBtn.onclick = function () {
     userPostsDiv.classList.toggle('hidden');
