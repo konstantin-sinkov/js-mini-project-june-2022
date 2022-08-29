@@ -2,7 +2,7 @@ let url = new URL(location.href);
 let id = url.searchParams.get('id');
 
 let userDetailsDiv = document.querySelector('.user_details_wrap');
-let userPostsDiv = document.querySelector('.user_posts_block');
+let userPostsDiv = document.querySelector('.user_posts_wrap');
 
 let userPostsBtn = document.createElement('button');
 
@@ -25,24 +25,24 @@ fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
         }
         
         //with recursion
-        // function objRecur(user) {
-        //     for (const key in user) {
-        //         if (typeof user[key] !== 'object') {
-        //             let userInfoItem = document.createElement('div');
-        //             userInfoItem.innerHTML = `<p><b>${key}</b> - ${user[key]}</p>`;
-        //             userDetailsDiv.appendChild(userInfoItem);
-        //         } else {
-        //             let userInfoItemBlock = document.createElement('div');
-        //             userInfoItemBlock.innerHTML = `<h4><u>${key}:</u></h4>`
-        //             for (const key2 in user[key]) {
-        //                 objRecur(user[key]);
-        //             }
-        //             userDetailsDiv.appendChild(userInfoItemBlock);
-        //         }
-        //     }
-        // }
-        //
-        // objRecur(user);
+        function objRecur(user) {
+            for (const key in user) {
+                if (typeof user[key] !== 'object') {
+                    let userInfoItem = document.createElement('div');
+                    userInfoItem.innerHTML = `<p><b>${key}</b> - ${user[key]}</p>`;
+                    userDetailsDiv.appendChild(userInfoItem);
+                } else {
+                    let userInfoItemBlock = document.createElement('div');
+                    userInfoItemBlock.innerHTML = `<h4><u>${key}:</u></h4>`
+                    for (const key2 in user[key]) {
+                        objRecur(user[key]);
+                    }
+                    userDetailsDiv.appendChild(userInfoItemBlock);
+                }
+            }
+        }
+
+        objRecur(user);
         
         // console.log(user);
         //     let userDetailsBlock = document.querySelector(".user_details_block");

@@ -5,7 +5,7 @@ fetch(`https://jsonplaceholder.typicode.com/users`)
     .then(users => {
         for (const user of users) {
             let userItem = document.createElement('div');
-            let userDetailsBtn = document.createElement('button')
+            let userDetailsBtn = document.createElement('button');
             userItem.classList.add('user_item');
             
             userItem.innerHTML = `<h4>${user.id} - ${user.name}</h4>`;

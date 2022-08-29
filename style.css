@@ -7,7 +7,14 @@
 }
 
 body {
+    width: 1200px;
+    margin: 0 auto;
     background-color: azure;
+}
+
+h2 {
+    text-align: center;
+    margin: 30px 0;
 }
 
 .hidden {
@@ -22,15 +29,24 @@ body {
 }
 
 .user_item {
-    margin: 0 10px;
-    padding: 5px 7px;
+    margin: 5px 10px;
+    padding: 10px 7px;
+    display: flex;
+    justify-content: space-between;
     background-color: lightcyan;
     border: 1px solid #444444;
     transition: background-color 700ms, transform 2s;
+    box-shadow: 0 0 7px rgba(210, 83, 104, 0.5);
+}
+
+.user_item button, .posts_btn {
 }
 
 .user_item:hover {
     background-color: #FFCCCC;
 }
+
+/*  user_details_page  */
+
 
 
